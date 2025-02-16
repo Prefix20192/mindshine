@@ -35,7 +35,7 @@
                     <li><a href="#about">О нас</a></li>
                     <li><a href="#speakers">Клиенты</a></li>
                     <li><a href="#reviews">Отзывы</a></li>
-                    <li class="buy-tickets"><a href="#buy-tickets">Авторизация \ Регистрация</a></li>
+                    <li class="buy-tickets"><a data-toggle="modal" data-target="#authRegister" href="#">Авторизация \ Регистрация</a></li>
                 </ul>
             </nav>
         </div>
@@ -256,7 +256,6 @@
         </section> -->
 
         <section id="faq" class="wow fadeInUp">
-
             <div class="container">
 
                 <div class="section-header">
@@ -343,10 +342,44 @@
                         </ul>
                     </div>
                 </div>
-
             </div>
-
         </section>
+
+
+        <div id="authRegister" class="modal fade">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Buy Tickets</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" action="#">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="your-name" placeholder="Your Name">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="your-email" placeholder="Your Email">
+                            </div>
+                            <div class="form-group">
+                                <select id="ticket-type" name="ticket-type" class="form-control" >
+                                    <option value="">-- Select Your Ticket Type --</option>
+                                    <option value="standard-access">Standard Access</option>
+                                    <option value="pro-access">Pro Access</option>
+                                    <option value="premium-access">Premium Access</option>
+                                </select>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn">Авторизация</button>
+                                <button type="submit" class="btn">Регистрация</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 
     <footer id="footer">
