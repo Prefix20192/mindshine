@@ -174,7 +174,7 @@ return [
         /*
         * Custom Service Providers
         */
-        App\Providers\Api\AuthServiceProvider::class
+
     ])->toArray(),
 
     /*
