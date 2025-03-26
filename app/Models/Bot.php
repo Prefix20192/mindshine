@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Str;
 
 class Bot extends Model
 {
@@ -44,6 +45,12 @@ class Bot extends Model
     {
         parent::boot();
 
+        static::creating(function ($bot) {
+            if ($bot->platform === 'vkontakte' && empty($bot->url_handler)) {
+                $bot->url_handler = url('/api/v1/vk/callback/' . Str::random(16));
+            }
+        });
+
         static::saving(function ($bot) {
             if ($bot->platform === 'telegram') {
                 if (!preg_match('/^[0-9]+:[a-zA-Z0-9_-]+$/', $bot->token)) {
@@ -55,9 +62,7 @@ class Bot extends Model
                 if (empty($bot->version)) {
                     throw new \Exception('VK version is required');
                 }
-                if (empty($bot->url_handler)) {
-                    throw new \Exception('URL handler is required for VK');
-                }
+                // URL handler теперь генерируется автоматически
             }
         });
     }

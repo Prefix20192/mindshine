@@ -2,17 +2,13 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\BotResource\RelationManagers\SubscriptionsRelationManager;
 use App\Filament\Resources\TariffsResource\Pages;
-use App\Filament\Resources\TariffsResource\RelationManagers;
 use App\Models\Tariffs;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class TariffsResource extends Resource
 {
@@ -22,35 +18,34 @@ class TariffsResource extends Resource
 
     public static function form(Form $form): Form
     {
-        return $form
-            ->schema([
-                Forms\Components\TextInput::make('name')
-                    ->required()
-                    ->maxLength(255),
+        return $form->schema([
+            Forms\Components\TextInput::make('name')
+                ->required()
+                ->maxLength(255),
 
-                Forms\Components\Textarea::make('description')
-                    ->columnSpanFull(),
+            Forms\Components\Textarea::make('description')
+                ->columnSpanFull(),
 
-                Forms\Components\TextInput::make('price')
-                    ->required()
-                    ->numeric()
-                    ->prefix('$'),
+            Forms\Components\TextInput::make('price')
+                ->required()
+                ->numeric()
+                ->prefix('$'),
 
-                Forms\Components\TextInput::make('duration_days')
-                    ->required()
-                    ->integer()
-                    ->label('Duration (days)'),
+            Forms\Components\TextInput::make('duration_days')
+                ->required()
+                ->integer()
+                ->label('Duration (days)'),
 
-                Forms\Components\TextInput::make('bot_count')
-                    ->required()
-                    ->integer()
-                    ->default(1)
-                    ->label('Max Bots'),
+            Forms\Components\TextInput::make('bot_count')
+                ->required()
+                ->integer()
+                ->default(1)
+                ->label('Max Bots'),
 
-                Forms\Components\Toggle::make('is_active')
-                    ->required()
-                    ->default(true),
-            ]);
+            Forms\Components\Toggle::make('is_active')
+                ->required()
+                ->default(true),
+        ]);
     }
 
     public static function table(Table $table): Table
@@ -73,9 +68,9 @@ class TariffsResource extends Resource
                     ->label('Bots')
                     ->sortable(),
 
-                Tables\Columns\TextColumn::make('activeSubscriptionsCount')
-                    ->counts('activeSubscriptions')
-                    ->label('Active Subs'),
+                Tables\Columns\TextColumn::make('subscriptions_count')
+                    ->counts('subscriptions')
+                    ->label('Total Subs'),
 
                 Tables\Columns\IconColumn::make('is_active')
                     ->boolean(),
@@ -117,9 +112,7 @@ class TariffsResource extends Resource
 
     public static function getRelations(): array
     {
-        return [
-            SubscriptionsRelationManager::class,
-        ];
+        return [];
     }
 
     public static function getPages(): array

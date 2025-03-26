@@ -25,13 +25,13 @@ class Tariffs extends Model
         'price' => 'decimal:2',
     ];
 
-    public function subscriptions(): HasMany
+    public function subscriptions()
     {
-        return $this->hasMany(Subscription::class);
+        return $this->hasMany(Subscription::class, 'tariff_id');
     }
 
-    public function activeSubscriptions(): HasMany
+    public function activeSubscriptions()
     {
-        return $this->subscriptions()->where('status', 'active');
+        return $this->hasMany(Subscription::class, 'tariff_id')->where('status', 'active');
     }
 }
