@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('bot_id')->constrained()->onDelete('cascade');
+            $table->foreignId('tariff_id')->constrained()->onDelete('cascade');
             $table->dateTime('starts_at');
             $table->dateTime('ends_at');
             $table->enum('status', ['active', 'inactive'])->default('active');

@@ -14,6 +14,9 @@ return new class extends Migration
         Schema::create('bots', function (Blueprint $table) {
             $table->id();
             $table->string('platform')->comment('Площадка для боота (Тг.Вк)');
+            $table->float('version')->comment('Версия callback-api')->nullable();
+            $table->string('url_handler')->comment('URL который будет назначен на бота после создание бота для вставки')->nullable();
+            $table->bigInteger('id_chat')->nullable()->comment('Идентификатор чата');
             $table->string('token')->nullable(false);
             $table->timestamps();
         });

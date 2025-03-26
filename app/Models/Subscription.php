@@ -14,6 +14,11 @@ class Subscription extends Model
         'user_id', 'bot_id', 'starts_at', 'ends_at', 'status',
     ];
 
+    protected $casts = [
+        'starts_at' => 'datetime',
+        'ends_at' => 'datetime',
+    ];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
@@ -22,5 +27,16 @@ class Subscription extends Model
     public function bot(): BelongsTo
     {
         return $this->belongsTo(Bot::class);
+    }
+
+    public function tariff(): BelongsTo
+    {
+        return $this->belongsTo(Tariffs::class);
+    }
+
+    public function scopeActive($query)
+    {
+        return $query->where('status', 'active')
+            ->where('ends_at', '>', now());
     }
 }
