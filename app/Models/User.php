@@ -48,4 +48,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Subscription::class);
     }
+
+    public function canAccessPanel(Panel $panel): bool
+    {
+        return str_ends_with($this->email, '@mindshine.ru') && $this->hasVerifiedEmail();
+    }
 }
