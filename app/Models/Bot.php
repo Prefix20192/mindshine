@@ -45,9 +45,11 @@ class Bot extends Model
     {
         parent::boot();
 
-        static::creating(function ($bot) {
+        static::created(function ($bot) {
             if ($bot->platform === 'vkontakte' && empty($bot->url_handler)) {
-                $bot->url_handler = url('/api/v1/vk/callback/' . Str::random(16));
+                $bot->update([
+                    'url_handler' => url('/api/v1/vk/callback?bot=' . $bot->id)
+                ]);
             }
         });
 
@@ -62,7 +64,6 @@ class Bot extends Model
                 if (empty($bot->version)) {
                     throw new \Exception('VK version is required');
                 }
-                // URL handler теперь генерируется автоматически
             }
         });
     }

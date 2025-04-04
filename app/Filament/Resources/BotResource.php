@@ -38,8 +38,6 @@ class BotResource extends Resource
                         if ($state === 'telegram') {
                             $set('version', null);
                             $set('url_handler', null);
-                        } elseif ($state === 'vkontakte') {
-                            $set('url_handler', url('/api/v1/vk/callback/' . Str::random(16)));
                         }
                     }),
 

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Api\v1\VK\BaseVkController;
+use App\Http\Middleware\CheckSubsBot;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +16,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('throttle:60,1')->prefix('v1')->group(function (){
-
+    Route::post('vk/callback', [BaseVkController::class, 'hubBots'])->middleware(CheckSubsBot::class);
 });

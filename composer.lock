@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ff4227e55247abed69624354f58d3e9b",
+    "content-hash": "5430c11f6b6002f7b87f79ad4aa5079b",
     "packages": [
         {
             "name": "anourvalar/eloquent-serialize",
@@ -530,6 +530,58 @@
                 "source": "https://github.com/dflydev/dflydev-dot-access-data/tree/v3.0.3"
             },
             "time": "2024-07-08T12:26:09+00:00"
+        },
+        {
+            "name": "digitalstars/simplevk",
+            "version": "3.1.28-beta",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/digitalstars/simpleVK-php.git",
+                "reference": "02cef99e9dd8d4baa1f0e0f30277fc3c87dcb145"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/digitalstars/simpleVK-php/zipball/02cef99e9dd8d4baa1f0e0f30277fc3c87dcb145",
+                "reference": "02cef99e9dd8d4baa1f0e0f30277fc3c87dcb145",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "php": ">=8.0"
+            },
+            "require-dev": {
+                "ext-openssl": "*",
+                "mockery/mockery": "^1.6",
+                "phpunit/phpunit": "^11",
+                "roave/security-advisories": "dev-latest"
+            },
+            "suggest": {
+                "ext-ffi": "Используется в модуле на С для ускорения проверки и разбивки отправляемых сообщений",
+                "ext-pcntl": "Автоматическая многопоточная обработка событий через Longpoll",
+                "ext-posix": "Автоматическая многопоточная обработка событий через Longpoll",
+                "ext-redis": "Используется для обнаружения дублирующихся событий от VK API и их игнорирования"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/Compatibility.php"
+                ],
+                "psr-4": {
+                    "DigitalStars\\SimpleVK\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Library for easy work with VK com api",
+            "support": {
+                "issues": "https://github.com/digitalstars/simpleVK-php/issues",
+                "source": "https://github.com/digitalstars/simpleVK-php/tree/3.1.28-beta"
+            },
+            "time": "2025-03-25T18:12:05+00:00"
         },
         {
             "name": "doctrine/cache",
@@ -10284,7 +10336,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {},
+    "stability-flags": {
+        "digitalstars/simplevk": 10
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
