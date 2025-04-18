@@ -17,8 +17,8 @@ class BaseVkController extends Controller
         $vk->initVars($id, $message, $payload, $user_id, $type, $data);
         if ($type == 'message_new') {
             (new MessageHandler((object)$data, $vk, $bot))->handle();
-            return response('ok');
+            exit('ok');
         }
-        return response('Unsupported event type');
+        exit('Unsupported event type');
     }
 }

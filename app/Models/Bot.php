@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Support\Str;
 
 class Bot extends Model
 {
@@ -17,7 +17,6 @@ class Bot extends Model
         'token',
         'version',
         'url_handler',
-        'id_chat',
     ];
 
     protected $casts = [
@@ -66,5 +65,10 @@ class Bot extends Model
                 }
             }
         });
+    }
+
+    public function chats(): BelongsToMany
+    {
+        return $this->belongsToMany(Chat::class);
     }
 }
