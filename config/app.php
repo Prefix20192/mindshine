@@ -173,6 +173,7 @@ return [
         /*
         * Custom Service Providers
         */
+        Barryvdh\Debugbar\ServiceProvider::class,
 
     ])->toArray(),
 
